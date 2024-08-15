@@ -20,7 +20,7 @@ public class LongWordListRuleTest {
 
     @AfterEach
     public void tearDown() {
-        rule.setLongWords(new ArrayList<>());
+        rule.cleanUp();
     }
 
     @Test

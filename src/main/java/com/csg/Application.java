@@ -26,5 +26,7 @@ public class Application {
         for (File file : files) {
             fileProcessor.processFile(file);
         }
+
+        fileProcessor.printResult();
     }
 }

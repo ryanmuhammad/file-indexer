@@ -30,14 +30,15 @@ public class FileProcessor {
                     rule.apply(line);
                 }
             }
-
-            for (var rule : indexingRules) {
-                rule.printResult();
-            }
-
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file: " + file.getPath());
             e.printStackTrace();
+        }
+    }
+
+    public void printResult() {
+        for (var rule : indexingRules) {
+            rule.printResult();
         }
     }
 }

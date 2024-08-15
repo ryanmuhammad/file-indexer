@@ -26,11 +26,12 @@ public class LongWordListRule implements IndexingRule {
         }
     }
 
-    public List<String> getLongWords() {
-        return longWords;
+    @Override
+    public void cleanUp() {
+        this.longWords = new ArrayList<>();
     }
 
-    public void setLongWords(List<String> longWords) {
-        this.longWords = longWords;
+    public List<String> getLongWords() {
+        return longWords;
     }
 }

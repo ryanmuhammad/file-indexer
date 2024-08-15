@@ -21,11 +21,12 @@ public class UppercaseWordCountRule implements IndexingRule {
         System.out.println("Number of words starting with uppercase letters: " + count);
     }
 
-    public int getCount() {
-        return this.count;
+    @Override
+    public void cleanUp() {
+        this.count = 0;
     }
 
-    public int setCount(int count) {
-        return this.count = count;
+    public int getCount() {
+        return this.count;
     }
 }

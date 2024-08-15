@@ -18,7 +18,7 @@ public class UppercaseWordCountRuleTest {
 
     @AfterEach
     public void tearDown() {
-        rule.setCount(0);
+        rule.cleanUp();
     }
 
     @Test

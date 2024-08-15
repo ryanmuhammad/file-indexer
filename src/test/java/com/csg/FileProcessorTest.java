@@ -4,7 +4,6 @@ import com.csg.rules.LongWordListRule;
 import com.csg.rules.UppercaseWordCountRule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -46,7 +45,9 @@ public class FileProcessorTest {
     @Test
     public void testFileProcessingWithUppercaseAndLongWords() throws IOException {
         File tempFile = createTempFile("This is a Test.\nAnother Line with Words like Example and Programming.");
+        File tempFile2 = createTempFile("This is a Test.\nCreate an indexing process for a search system.");
         tempFiles.add(tempFile);
+        tempFiles.add(tempFile2);
 
         var fileProcessor = new FileProcessor();
         var uppercaseRule = new UppercaseWordCountRule();
@@ -56,13 +57,19 @@ public class FileProcessorTest {
         fileProcessor.addIndexingRule(longWordRule);
 
         fileProcessor.processFile(tempFile);
+        fileProcessor.processFile(tempFile2);
 
-        assertThat(uppercaseRule.getCount(), equalTo(7));
+        assertThat(uppercaseRule.getCount(), equalTo(10));
         List<String> longWords = longWordRule.getLongWords();
-        assertThat(longWords.size(), equalTo(3));
+        assertThat(longWords.size(), equalTo(8));
         assertThat(longWords, hasItem("Another"));
         assertThat(longWords, hasItem("Example"));
         assertThat(longWords, hasItem("Programming"));
+        assertThat(longWords, hasItem("Create"));
+        assertThat(longWords, hasItem("indexing"));
+        assertThat(longWords, hasItem("process"));
+        assertThat(longWords, hasItem("search"));
+        assertThat(longWords, hasItem("system"));
     }
 
     private File createTempFile(String content) throws IOException {
